@@ -1,7 +1,7 @@
 /*
-Verificar nombre de usurio y contrasea
+Verificar nombre de usurio y contraseña
 contra usuario registrado
-informar el resultado del login 
+informar el resultado del intento de login 
 */
 
 const USUARIO_NOMBRE_REGISTRADO = "pepe";
