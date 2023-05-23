@@ -10,28 +10,45 @@ const inpUsuario        = document.querySelector("#nombre-usuario")
 const impContrasenia    = document.querySelector("#nombre-contrasenia")
 const miParrafo         = document.querySelector("#mi-parrafo")
 
-const USUARIO1_NOMBRE_REGISTRADO        = "Antonio12";
-const USUARIO2_NOMBRE_REGISTRADO        = "JuanPedro";
-const USUARIO1_CONTRASENIA_REGISTRADO   = "clave055"
-const USUARIO2_CONTRASENIA_REGISTRADO   = "gatopardo"
+const miLista           = document.querySelector ("#mi-lista")
+
+const USUARIO_NOMBRE_REGISTRADO        = ["Antonio", "Juan", "Pedro", "Carlos" ];
+const USUARIO_CONTRASENIA_REGISTRADO   = ["clave55", "gato", "pardo", "abcd"];
 
 function impUsuario (nombre){
-    miParrafo.textContent = "Bienvenido a su Cuenta Usuario: " + nombre +"";
+    miParrafo.style.color = "green";
+    miParrafo.textContent = "Bienvenido a su Cuenta : " + nombre +"";
 }
 
 function tomaInfo ()  {
     let usuarioNombreIngresado      = inpUsuario.value ;
     let usuarioCOntraseniaIngresado = impContrasenia.value ;
-    
-    if ((usuarioNombreIngresado == USUARIO1_NOMBRE_REGISTRADO) && 
-                (usuarioCOntraseniaIngresado == USUARIO1_CONTRASENIA_REGISTRADO)) {
-        impUsuario (usuarioNombreIngresado);
+    let encontrado = false;
+
+    for (let index = 0; index < USUARIO_NOMBRE_REGISTRADO.length; index++) {
+        const nombre = USUARIO_NOMBRE_REGISTRADO[index];
+        const contrasenia = USUARIO_CONTRASENIA_REGISTRADO [index];
+
+        if ((usuarioNombreIngresado == nombre) && (usuarioCOntraseniaIngresado == contrasenia)) {
+            impUsuario (usuarioNombreIngresado); 
+            encontrado  = true;      
+        }
     }
-    else if ((usuarioNombreIngresado == USUARIO2_NOMBRE_REGISTRADO) && 
-                (usuarioCOntraseniaIngresado == USUARIO2_CONTRASENIA_REGISTRADO)) {
-        impUsuario (usuarioNombreIngresado); 
+    if (!encontrado) {
+        miParrafo.style.color = "red";
+        miParrafo.textContent =  "Usuario y/o Contrasenia incorrectos!!"; 
     }
-    else {
-        miParrafo.textContent =  "Nombre de Usuario y/o Contrsenia incorrectos!!"; 
+}
+
+function mostrarLista() {
+    miLista.innerHTML= "";
+    for (let index = 0; index < USUARIO_NOMBRE_REGISTRADO.length; index++) {
+        const nombre = USUARIO_NOMBRE_REGISTRADO[index];
+        const contrasenia = USUARIO_CONTRASENIA_REGISTRADO [index];
+        miLista.innerHTML +=  `
+            <li> Nombre: ${nombre}  - - -> Contrasenia: ${contrasenia}</li>
+        `;
+        
     }
+
 }
